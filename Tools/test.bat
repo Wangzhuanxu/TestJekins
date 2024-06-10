@@ -1,38 +1,35 @@
 
 SET CUR_DIR=%CD%
-set PROJ_PATH=%CUR_DIR%\projectTest
-echo %PROJ_PATH%
-set APK_TARGET_FOLDER="/Volumes/BAK/apk_test/"
-set GRADLE_PATH="/opt/gradle-6.7.1/bin/gradle"
+SET PROJ_PATH=%CUR_DIR%\projectTest
+ECHO %PROJ_PATH%
+SET APK_TARGET_FOLDER="/Volumes/BAK/apk_test/"
+SET GRADLE_PATH="/opt/gradle-6.7.1/bin/gradle"
 
-if exist "%CUR_DIR%\.git\index.lock" (
-	del /f /q "%CUR_DIR%\.git\index.lock"
-) else (
-	echo git not exit
-}
+IF EXIST "%CUR_DIR%\.git\index.lock" (
+    DEL /f /q "%CUR_DIR%\.git\index.lock"
+) ELSE (
+    ECHO git not exist
+)
 
-cd %PROJ_PATH%
+CD %PROJ_PATH%
 
+DEL /f /q "%CUR_DIR%\BundleVersions\*"
 
-del /f /q "%CUR_DIR%\BundleVersions\*"
-
-
-set IsRemoveScriptAssembleDirectory=true
-set SCRIPT_ASSEMBLE_PATH=%PROJ_PATH%\Library\ScriptAssemblies
-echo %SCRIPT_ASSEMBLE_PATH%
-if %IsRemoveScriptAssembleDirectory%=="true" (
-	if exist "%SCRIPT_ASSEMBLE_PATH%" (
-		echo %SCRIPT_ASSEMBLE_PATH%
-		rmdir /s /q %SCRIPT_ASSEMBLE_PATH%
-	)
-) else (
+SET IsRemoveScriptAssembleDirectory=true
+SET SCRIPT_ASSEMBLE_PATH=%PROJ_PATH%\Library\ScriptAssemblies
+ECHO %SCRIPT_ASSEMBLE_PATH%
+IF "%IsRemoveScriptAssembleDirectory%"=="true" (
+    IF EXIST "%SCRIPT_ASSEMBLE_PATH%" (
+        ECHO %SCRIPT_ASSEMBLE_PATH%
+        RMDIR /s /q "%SCRIPT_ASSEMBLE_PATH%"
+    )
 )
 
 
-git checkout -- .
-git clean -df
-git fetch -p
-git checkout $BRANCH
-git pull
+REM git checkout -- .
+REM git clean -df
+REM git fetch -p
+REM git checkout $BRANCH
+REM git pull
 
 echo pullover
