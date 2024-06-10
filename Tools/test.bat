@@ -13,7 +13,7 @@ IF EXIST "%CUR_DIR%\.git\index.lock" (
 
 CD %PROJ_PATH%
 
-DEL /f /q "%CUR_DIR%\BundleVersions\*"
+REM DEL /f /q "%CUR_DIR%\BundleVersions\*"
 
 SET IsRemoveScriptAssembleDirectory=true
 SET SCRIPT_ASSEMBLE_PATH=%PROJ_PATH%\Library\ScriptAssemblies
